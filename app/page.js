@@ -71,7 +71,10 @@ const Home = () => {
   return (
     <>
       <LoadingWrapper />
-      <Animation />
+      <MobileDetector>
+        <Animation />
+      </MobileDetector>
+
 
       <Navbar />
       <SmoothScroll />
