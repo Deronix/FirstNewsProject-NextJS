@@ -8,6 +8,8 @@ import { Animation } from "./animation/page.js";
 import NewsPage from "./NewsPage";
 import Link from "next/link";
 import { useState } from "react";
+import { MobileDetector } from "./components/mobiledetector";
+
 
 const Home = () => {
   const containerRef = useRef();
