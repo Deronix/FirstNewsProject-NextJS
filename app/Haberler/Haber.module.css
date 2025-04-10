@@ -1,0 +1,420 @@
+
+  .pagination {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 1000;
+  }
+
+  .space{
+    height: 5vh;
+    width: 0vw;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background: var(--transground);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background: var(--transground);
+  }
+  
+  .pagination button.activePage {
+    background: var(--foreground);
+    font-weight: bold;
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+
+
+
+/* Base Haber Container Styles */
+.haberContainer {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  height: 80vh;
+  width: 78vw;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2vh;
+  background: var(--background);
+  padding: 2rem;
+  bottom: 4.5vh;
+  left: -2vw;
+  padding-left: 6vw;
+  text-align: center;
+  padding-left: 4vw !important;
+
+}
+/* Horizontal Scroll Container */
+.newsPage {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  height: 80vh;
+  width: 80vw;
+  position: relative;
+}
+
+.fullscreenCarousel {
+  
+  /*background: var(--transground);*/
+  
+  backdrop-filter: blur(5px);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100vw;
+  height: 80vh;
+  max-width: 1200px;
+  scrollbar-width: none;
+  margin: 0 auto;
+  padding: 0rem;
+  border-radius: 5vh;
+  overflow-x: scroll;
+  scroll-snap-type: x man datory;
+}
+
+.fullscreenSection {
+  
+  min-width: 80vw;
+  height: 80vh;
+  padding: 2rem;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+/* Fullscreen Modifiers */
+.haberContainer.expanded {
+  overflow-y: hidden;
+
+  height: 100vh;
+  overflow-y: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  cursor: default;
+  background-color: var(--back);
+  padding-bottom: 25vh;
+
+}
+
+/* Image Styles */
+.mainImage {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: fill;
+  border-radius: 2vh;
+
+  transition: transform 0.3s ease;
+}
+
+/* Content Transition Effects */
+.content {
+  display: grid;
+  gap: 2rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.expanded .content {
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+}
+
+/* Typography */
+.mainTitle {
+  font-size: 2rem;
+  margin: 0;
+  color: var(--text);
+  background-color: var(--foreground);
+  border-radius: 2vh;
+  padding: 2vh;
+}
+
+/* Image Grid */
+.imageRow {
+  display: grid;
+  grid-template-columns: repeat(1, 2fr);
+  gap: 1rem;
+  margin: 1rem 0;
+  background-color: var(--transground);
+  border-radius: 2vh;
+  padding: 2vh;
+}
+
+.subImage {
+  width: 100%;
+  height: 90vh;
+  object-fit: scale-down;
+  border-radius: 2vh;
+  padding: 2vh;
+  
+}
+
+
+/* Content Sections */
+.sections {
+  display: grid;
+  gap: 2rem;
+  background-color: var(--foreground);
+  border-radius: 2vh;
+  padding: 2vh;
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.section p {
+  line-height: 1.6;
+  margin: 0;
+
+}
+
+/* Special Elements */
+.notes {
+  font-style: italic;
+  opacity: 0.8;
+  padding: 1rem;
+  background: var(--transground);
+
+  border-radius: 2vh;
+  padding: 2vh;
+}
+
+.sponsorBox {
+  background: var(--transground);
+  
+  border-radius: 2vh;
+  padding: 2vh;
+  text-align: center;
+
+}
+
+.sponsorBox h3 {
+  margin: 0 0 1rem 0;
+  
+}
+.summary {
+  background: var(--transground);
+  border-radius: 2vh;
+  padding: 2vh;
+  text-align: center;
+}
+.sponsorImage{
+  object-fit: scale-down;
+  height: 40vh;
+  width: 100%;
+}
+.readMore {
+  display: inline-block;
+  padding: 1rem 2rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 2vh;
+  transition: transform 0.3s ease;
+  background: var(--transground);
+  border-radius: 2vh;
+  padding: 2vh;
+}
+
+.readMore:hover {
+  transform: scale(1.05);
+}
+
+/* Fullscreen Carousel System */
+
+/* Interactive Elements */
+.closeButton {
+  position: fixed;
+  top: 3vh;
+  right: 5vw;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  z-index: 1001;
+  color: var(--text);
+  background: var(--transground);
+  border-radius: 2vh;
+  width: 6vh;
+  height: 6vh;
+}
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX MEDIA XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+/* Horizontal Scroll Behavior */
+@media (hover: hover) {
+  .newsPage::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .newsPage::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 1.8rem;
+  }
+
+  .imageRow {
+    grid-template-columns: 1fr;
+  }
+
+  .subImage {
+    height: 150px;
+  }
+
+  .haberContainer {
+    padding: 1rem;
+  }
+
+  .fullscreenSection {
+    padding: 1rem;
+  }
+}
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX MEDIA XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+
+/* Large Devices, Wide Screens: 1200px - 1500px */
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+  .fullscreenCarousel {
+    padding-top: 0rem;
+    width: 79.5vw;
+    height: 80vh;
+  }
+  
+  .pagination {
+    gap: 6px;
+  }
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    min-width: 32px;
+  }
+}
+
+/* Large Devices: 992px - 1200px */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .fullscreenCarousel {
+    padding-top: 0rem;
+    width: 79.5vw;
+    height: 80vh;
+  }
+  
+  .pagination {
+    gap: 5px;
+  }
+  .pagination button {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+    min-width: 28px;
+  }
+}
+
+/* Medium Devices: 768px - 992px */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .fullscreenCarousel {
+    padding-top: 0rem;
+    width: 81vw;
+    height: 80vh;
+  }
+  
+  .pagination {
+    bottom: 15px;
+    gap: 4px;
+  }
+  .pagination button {
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    min-width: 24px;
+  }
+}
+
+/* Small Devices: 480px - 768px */
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .fullscreenCarousel {
+    padding-top: 1rem;
+    width: 78.9vw;
+    height: 80vh;
+  }
+  
+  .pagination {
+    bottom: 10px;
+    gap: 3px;
+    transform: translateX(-50%) scale(0.95);
+  }
+  .pagination button {
+    padding: 3px 5px;
+    font-size: 0.75rem;
+    min-width: 20px;
+    border-radius: 3px;
+  }
+}
+
+/* Extra Small Devices: 320px - 480px */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .fullscreenCarousel {
+    padding-top: 0.5rem;
+    width: 82vw;
+    height: 80vh;
+  }
+  
+  .pagination {
+    bottom: 8px;
+    gap: 2px;
+    transform: translateX(-50%) scale(0.9);
+  }
+  .pagination button {
+    padding: 2px 4px;
+    font-size: 0.7rem;
+    min-width: 18px;
+    border-radius: 2px;
+  }
+}
+
+/* iPhone Retina: up to 320px */
+@media only screen and (max-width: 320px) {
+  .fullscreenCarousel {
+    padding-top: 0.5rem;
+    width: 85vw;
+    height: 80vh;
+  }
+  
+  .pagination {
+    bottom: 5px;
+    gap: 1px;
+    transform: translateX(-50%) scale(0.85);
+  }
+  .pagination button {
+    padding: 1px 3px;
+    font-size: 0.65rem;
+    min-width: 16px;
+    border-radius: 2px;
+  }
+}
+

@@ -1,0 +1,137 @@
+/* about.module.css */
+.container {
+    min-height: 100vh;
+    padding: 1rem;
+    background: var(--gregrad);
+    overflow-x: hidden;
+    overflow: hidden; /* Added */
+
+  }
+  .space {
+    height: 10vh;
+    width: 0vw;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    background: var(--back);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+    color: var(--hover);
+    margin-bottom: 1.5rem;
+  }
+  
+  .gradientBar {
+    height: 4px;
+    background: var(--back);
+    width: 60%;
+    margin: 0 auto;
+  }
+  
+  .story {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background: var(--form);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--foreground);
+  }
+  
+  .cardHeading {
+    color: var(--hover);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .gridItem {
+    background: var(--transground);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--foreground);
+  }
+  
+  .gridHeading {
+    color: var(--link);
+    margin-bottom: 0.8rem;
+  }
+  
+  .cta {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--back);
+    border-radius: 12px;
+    margin-top: 2rem;
+  }
+  
+  .link {
+    color: var(--link);
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+  
+  .cardText {
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .heroTitle {
+      font-size: 2rem;
+    }
+  
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .card, .gridItem {
+      padding: 1.2rem;
+    }
+  
+    .cta {
+      padding: 2rem 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      padding: 3rem 1rem;
+    }
+    
+    .heroTitle {
+      font-size: 1.75rem;
+    }
+  
+    .gradientBar {
+      width: 80%;
+    }
+  }
+
+  .card, .gridItem, .cta {
+    will-change: transform, opacity;
+  }
+  
+  .gridItem {
+    transition: transform 0.3s ease;
+  }
+  
+  .gridItem:hover {
+    transform: translateY(-5px);
+  }

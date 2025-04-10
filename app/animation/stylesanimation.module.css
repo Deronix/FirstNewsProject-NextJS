@@ -1,0 +1,129 @@
+
+/* Animasyon Overlay */
+.animationOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.96);
+    z-index: 5000;
+    opacity: 1; /* Başlangıç opacity'si 1 */
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.overlayActive {
+    animation: overlayAnim 3s forwards;
+}
+
+@keyframes overlayAnim {
+    0% { opacity: 1; } /* Başlangıçta tam görünür */
+    70% { opacity: 1; } /* Görünür kalma süresi */
+    100% { opacity: 0; } /* Sadece fade-out */
+}
+
+/* Kutucuk Animasyonları */
+.animatedBox {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    color:  white;
+    background: linear-gradient(45deg,#8bf79d ,#b0f0bb );
+    opacity: 1; /* Başlangıç opacity'si 1 */
+    border-radius: 8px;
+    transform-origin: center;
+    right: 48.2%;
+}
+
+.boxActive {
+    animation: boxAnim 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes boxAnim {
+    0% {
+        opacity: 1; /* Fade-in kaldırıldı */
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+        opacity: 0; /* Sadece fade-out */
+        transform: scale(2) rotate(360deg);
+    }
+}
+
+/* Başlık Animasyonu */
+.heroTitle {
+    position: relative;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 5vh;
+    z-index: 1;
+    right: 3.3vw;
+    animation: titleAnim 1.5s ease-out forwards;
+}
+
+@keyframes titleAnim {
+    from {
+        transform: translateY(0); /* Fade-in kaldırıldı */
+    }
+    to {
+        transform: translateY(-20px); /* Sadece hareket */
+    }
+}
+
+/* Harf Animasyonları */
+.char {
+    opacity: 1; /* Başlangıçta görünür */
+    display: inline-block;
+    transform: translateY(2);
+    margin-right: 0.05em;
+}
+
+.char[data-char=" "] {
+    margin-right: 0.4em;
+}
+
+.charVisible {
+    animation: charAnim 0.3s forwards;
+}
+
+@keyframes charAnim {
+    from {
+        transform: translateY(0); /* Sadece hareket */
+    }
+    to {
+        transform: translateY(50px);
+    }
+}
+
+/* Diğer stiller aynı kalıyor */
+
+/* Eklenen stiller */
+.overlayContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}

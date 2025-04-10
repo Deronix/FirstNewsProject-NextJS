@@ -1,0 +1,70 @@
+"use client";
+import { useEffect, useRef } from "react";
+import Navbar from "./Navbar";
+import styles from "./page.module.css";
+import { SmoothScroll } from "./scroolsmooth";
+import { LoadingWrapper } from "./loadingwrapper";
+import { Animation } from "./animation/page.js";
+import NewsPage from "./NewsPage";
+import Link from "next/link";
+
+
+const Home = () => {
+  const containerRef = useRef();
+
+  useEffect(() => {
+    // Disable vertical scroll
+    document.documentElement.style.overflowY = "hidden";
+    document.body.style.overflowY = "hidden";
+
+    // Disable keyboard tabbing for all buttons
+    const disableButtonFocus = (e) => {
+      if (e.key === "Tab") {
+        const buttons = document.querySelectorAll("button");
+        if (buttons.length > 0) {
+          e.preventDefault();
+        }
+      }
+    };
+
+    // Mobile touch handler
+    const handleTouchMove = (e) => {
+      if (!containerRef.current?.contains(e.target)) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("keydown", disableButtonFocus);
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      document.documentElement.style.overflowY = "auto";
+      document.body.style.overflowY = "auto";
+      document.removeEventListener("keydown", disableButtonFocus);
+      document.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
+  return (
+    <>
+      <SmoothScroll />
+
+      <Navbar />
+      <div className={styles.container} style={{ overflowY: "hidden" }}>
+        <div className={styles.space}></div>
+        <div className={styles.contain}>
+          <div
+            className={styles.box}
+            ref={containerRef}
+            // Add tabIndex to make div focusable and prevent button focus
+            tabIndex={-1}
+          >
+            <NewsPage />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Home;

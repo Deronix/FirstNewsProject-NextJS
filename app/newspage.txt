@@ -1,0 +1,175 @@
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { Haber } from './Haberler/Haber';
+import { newsData } from './Data/NewsData.js';
+import styles from './Haberler/Haber.module.css';
+
+export default function NewsPage() {
+  const [expandedIndex, setExpandedIndex] = useState(-1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const containerRef = useRef();
+  const sectionsRef = useRef([]);
+  const currentIndex = useRef(0);
+  const gap = 0; // Restore proper gap value
+  const isAnimating = useRef(false);
+  const expandedIndexRef = useRef(expandedIndex);
+
+  // Sync ref with expandedIndex state
+  useEffect(() => {
+    expandedIndexRef.current = expandedIndex;
+  }, [expandedIndex]);
+
+  const calculatePositions = () => {
+    const viewportWidth = window.innerWidth;
+    return {
+      sectionWidth: viewportWidth * 0.8,
+      gapWidth: viewportWidth * (gap / 100)
+    };
+  };
+
+  const PaginationControls = () => (
+    <div className={styles.pagination}>
+      <button onClick={() => moveToIndex(0)} disabled={currentPage === 1}>
+        &lt;&lt;&lt;
+      </button>
+      <button 
+        onClick={() => moveToIndex(currentIndex.current - 1)} 
+        disabled={currentPage === 1}
+      >
+        &lt;
+      </button>
+      
+      {[...Array(newsData.length)].map((_, index) => (
+        <button
+          key={index}
+          className={currentPage === index + 1 ? styles.activePage : ''}
+          onClick={() => moveToIndex(index)}
+        >
+          {index + 1}
+        </button>
+      ))}
+      
+      <button 
+        onClick={() => moveToIndex(currentIndex.current + 1)} 
+        disabled={currentPage === newsData.length}
+      >
+        &gt;
+      </button>
+      <button 
+        onClick={() => moveToIndex(newsData.length - 1)} 
+        disabled={currentPage === newsData.length}
+      >
+        &gt;&gt;&gt;
+      </button>
+    </div>
+  );
+
+  const moveToIndex = (index, onComplete) => {
+    const clampedIndex = Math.max(0, Math.min(index, newsData.length - 1));
+    if (clampedIndex === currentIndex.current) return;
+
+    const { sectionWidth, gapWidth } = calculatePositions();
+    const targetX = -clampedIndex * (sectionWidth + gapWidth);
+    
+    isAnimating.current = true;
+    gsap.to(sectionsRef.current, {
+      x: targetX,
+      duration: 0.5,
+      ease: "power2.inOut",
+      onComplete: () => {
+        currentIndex.current = clampedIndex;
+        setCurrentPage(clampedIndex + 1);
+        isAnimating.current = false;
+        onComplete?.();
+      }
+    });
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const sections = sectionsRef.current;
+
+    const setupCarousel = () => {
+      const { sectionWidth, gapWidth } = calculatePositions();
+      gsap.set(sections, {
+        x: i => i * (sectionWidth + gapWidth),
+        width: sectionWidth
+      });
+    };
+
+    const handleWheel = e => {
+      if (expandedIndexRef.current !== -1) {
+        // Allow vertical scroll in expanded mode
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
+        e.preventDefault();
+        return;
+      }
+      
+      if (isAnimating.current) return;
+      e.preventDefault();
+      const direction = e.deltaY > 0 ? 1 : -1;
+      moveToIndex(currentIndex.current + direction);
+    };
+
+    const handleResize = () => {
+      setupCarousel();
+      moveToIndex(currentIndex.current);
+    };
+
+    setupCarousel();
+    window.addEventListener('resize', handleResize);
+    container.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, [gap]);
+
+  const handleNewsClick = (index) => {
+    if (isAnimating.current) return;
+
+    if (expandedIndex === index) {
+      setExpandedIndex(-1);
+    } else {
+      if (currentIndex.current !== index) {
+        moveToIndex(index, () => {
+          setExpandedIndex(index);
+        });
+      } else {
+        setExpandedIndex(index);
+      }
+    }
+  };
+
+  return (
+    <div 
+      className={styles.fullscreenCarousel} 
+      ref={containerRef}
+      style={{ 
+        overflowY: 'hidden',
+        overflowX: expandedIndex === -1 ? 'scroll' : 'hidden'
+      }}
+    >
+      {newsData.map((haber, index) => (
+        <section 
+          key={haber.id}
+          className={styles.fullscreenSection}
+          ref={el => sectionsRef.current[index] = el}
+        >
+          <Haber
+            haberData={haber}
+            isExpanded={index === expandedIndex}
+            onClose={() => {
+              setExpandedIndex(-1);
+              moveToIndex(currentIndex.current);
+            }}
+            onClick={() => handleNewsClick(index)}
+          />
+        </section>
+      ))}
+      
+      {expandedIndex === -1 && <PaginationControls />}
+    </div>
+  );
+}

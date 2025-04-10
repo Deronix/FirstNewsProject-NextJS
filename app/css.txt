@@ -1,0 +1,87 @@
+/* NAVBAR STYLES (Keep these) */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: var(--background);
+  align-items: center;
+  z-index: 1000; /* Added for overlay priority */
+}
+
+.navbar a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navhaber {
+  font-size: xx-large;
+  font-family: fantasy;
+}
+
+/* MAIN CONTAINER ADJUSTMENTS */
+.container {
+  display: grid;
+  position: relative;
+  width: 100vw;
+  height: 100vh; /* Updated */
+  min-height: 100vh;
+  padding-top: 70px; /* Space for navbar */
+  overflow: hidden; /* Added */
+}
+
+.contain {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  place-items: center;
+  align-items: center;
+  width: 100vw;
+  height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 5vh;
+  background: none;
+  backdrop-filter: blur(0px);
+}
+
+
+
+.box {
+  width: 80vw; /* Updated */
+  height: 80vh; /* Updated */
+  position: absolute; /* Added */
+  border-radius: 5vh;
+  top: 0;
+  
+}
+
+/* Remove old box1-box6 styles */
+.backgrd {
+  /* Consider removing this as it's not used in new structure */
+  display: none;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .container {
+    padding-top: 60px;
+  }
+  
+  .contain {
+    width: 95%;
+    padding: 1rem;
+    border-radius: 3vh;
+  }
+  
+  .box {
+    border-radius: 3vh;
+  }
+}

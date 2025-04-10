@@ -1,0 +1,158 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./app/iletisim/iletisim.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+.iletisim_space__lrKbp {
+  height: 20vh;
+  width: 0vw;
+}
+@media (min-width: 1080px) and (max-width: 1124px) {
+  .iletisim_space__lrKbp {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 849px) {
+  .iletisim_space__lrKbp {
+    height: 10vh;
+  }
+}
+.iletisim_successMessage__mfYBq {
+  color: #4caf50;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.iletisim_errorMessage__MjTBV {
+  color: #f44336;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.iletisim_submitButton__t245U:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* XXXXXXXXXXXXXXXXXXXXXXXX ILETISIM XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+
+.iletisim_info__V8DYO {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  width: 50vw;
+  color: var(--text);
+  font-family: fantasy;
+  font-size: 5rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .iletisim_info__V8DYO {
+    width: 90vw;
+    font-size: 3rem;
+  }
+}
+@media (min-width: 851px) and (max-width: 1124px) {
+  .iletisim_info__V8DYO {
+    font-size: 4rem;
+  }
+}
+
+.iletisim_container__WgkXk {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  place-items: center;
+}
+
+.iletisim_title__ZmeJQ {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.iletisim_contactForm__OtE77 {
+  background: var(--foreground);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  width: 40vw;
+}
+
+.iletisim_formGroup__tOkS_ {
+  margin-bottom: 1.5rem;
+}
+
+.iletisim_formGroup__tOkS_ label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.iletisim_inputField__n3303,
+.iletisim_textareaField__v_yr4 {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--back);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.iletisim_inputField__n3303:focus,
+.iletisim_textareaField__v_yr4:focus {
+  outline: none;
+  border-color: var(--back);
+}
+
+.iletisim_textareaField__v_yr4 {
+  resize: vertical;
+}
+
+.iletisim_submitButton__t245U {
+  background: var(--background);
+  /*color: white;*/
+  color: var(--text);
+
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+  display: block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  width: 100%;
+}
+
+.iletisim_submitButton__t245U:hover {
+  transform: scale(1.05);
+  background: var(--back);
+}
+
+.iletisim_backHome__IpgQj {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.iletisim_homeLink__Sdh9E {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.iletisim_homeLink__Sdh9E:hover {
+  color: var(--hover);
+}
+
